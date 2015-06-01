@@ -1,4 +1,4 @@
-# The Tahi Article Specification
+# Tahi Article Specification
 
 The goal of this spec is to define the possible structure and markup of a Tahi-Article. This format is used as an input and output format for the Tahi editor and the document conversion service iHat.
 
@@ -20,7 +20,7 @@ Tahi articles live in the database, and are fragmented to different tables and f
   <div typeof="figinc" data-rid="fig1"></div>
 ```
 
-Allowed tags: `<p>`, `<h1>`, `<h2>`, `<h3>`, `<em>`, `<strong>`, `<div class="figinc">`
+Allowed tags: `<p>`, `<h1>`, `<h2>`, `<h3>`, `<em>`, `<strong>`, `<cite>`, `<div class="figinc">`
 
 The manuscript body uses common HTML tags for representing headings, paragraphs and annotations. For expressing figure references and citations we use the `<cite>` tag in combination with data attributes. We make use of some RDFa attributes for assigning property and type names to our elements. In order to include a figure in a certain place we just use a placeholder element of the type "`figinc`"
 
