@@ -1,10 +1,14 @@
 # The Tahi Article Specification
 
+The goal of this spec is to define the possible structure and markup of a Tahi-Article. This format is used as an input and output format for the Tahi editor and the document conversion service iHat.
 
+Tahi articles live in the database, and are fragmented to different tables and fields. For that reason we defined rules for individual sections on the persistence level.
+
+** Note: This spec is a work in progress**
 
 ## Persistence Level
 
-Manuscript body (`Paper.body`)
+*Manuscript body* (`Paper.body`)
 
 ```html
   <h1 id="h1">A heading</h1>
@@ -16,39 +20,63 @@ Manuscript body (`Paper.body`)
   <div typeof="figinc" data-rid="fig1"></div>
 ```
 
-Title (`Paper.title`)
+Allowed tags: `<p>`, `<h1>`, `<h2>`, `<h3>`, `<em>`, `<strong>`, `<div class="figinc">`
+
+The manuscript body uses common HTML tags for representing headings, paragraphs and annotations. For expressing figure references and citations we use the `<cite>` tag in combination with data attributes. We make use of some RDFa attributes for assigning property and type names to our elements. In order to include a figure in a certain place we just use a placeholder element of the type "`figinc`"
+
+*Title* (`Paper.title`)
 
 ```html
 The <em>TAHI</em> Article Format
 ```
 
-Abtract (`Paper.abstract`)
+Allowed tags: `<em>`, `<strong>`
+
+*Abtract* (`Paper.abstract`)
 
 ```html
 Article abstract that can be <strong>annotated</strong>
 ```
 
+Allowed tags: `<em>`, `<strong>`
+
+
+*Figure caption* (`Figure.caption`)
+
+While most data fields (title, url, etc.) of a figure are stored as strings in the database, we use HTML for the figure caption.
+
+Example:
+
+```html
+Figure caption that can be <strong>annotated</strong>
+```
+
+Allowed tags: `<em>`, `<strong>`, `<cite>`
+
 
 ## Exchange Level
 
-Possible self-contained representation in JSON
+The previous section defined allowed HTML markup for individual properties of a Tahi document. In order to exchange a complete snapshot of a document, including all resources such as figures and bibliographic entries we need a combined representation.
+
+Here's a possible representation in JSON, that could be used to transfer data to the editor.
 
 ```json
 {
   "id": "10",
   "title": "The <em>TAHI</em> Article Format",
   "abstract": "Article abstract that can be <strong>annotated</strong>",
-  "body": "<h1 id=\"h1\">A heading</h1>....",
+  "body": "<h1 id=\"h1\">A heading</h1>...",
   "resources": {
     "fig1": {
       "type": "fig",
       "caption": "annotated <em>caption</em>"
-    }
+    },
+    "bib1": {...}
   }
 }
 ```
 
-Alternative as a combined HTML file (can be used as a snapshot for archiving)
+An interesting way could also be providing the complete data as an HTML document.
 
 ```html
 <!DOCTYPE html>
@@ -82,9 +110,6 @@ Alternative as a combined HTML file (can be used as a snapshot for archiving)
         ...
       </div>
     </header>
-    
-    <bib id="bib1" bib-type="journal-article">
-
     <!-- this lives in db paper.main -->
     <main>
       <h1 id="h1">A heading</h1>
@@ -98,3 +123,5 @@ Alternative as a combined HTML file (can be used as a snapshot for archiving)
   </body>
 </html>
 ```
+
+Exposing the Tahi Article as an HTML document would allow somebody to edit the whole document by hand in a text editor. However, we have to be aware that importing a modified Tahi-Source-HTML file is a destructive operation. If we want to allow it, the user must be warned that all contents in the database will be overwritten with the contents of the HTML file.
