@@ -4,11 +4,11 @@ The goal of this spec is to define the possible structure and markup of a Tahi-A
 
 Tahi articles live in the database, and are fragmented to different tables and fields. For that reason we defined rules for individual sections on the persistence level.
 
-** Note: This spec is a work in progress**
+*Note: This spec is a work in progress*
 
 ## Persistence Level
 
-*Manuscript body* (`Paper.body`)
+**Manuscript body** (`Paper.body`)
 
 ```html
   <h1 id="h1">A heading</h1>
@@ -24,7 +24,7 @@ Allowed tags: `<p>`, `<h1>`, `<h2>`, `<h3>`, `<em>`, `<strong>`, `<div class="fi
 
 The manuscript body uses common HTML tags for representing headings, paragraphs and annotations. For expressing figure references and citations we use the `<cite>` tag in combination with data attributes. We make use of some RDFa attributes for assigning property and type names to our elements. In order to include a figure in a certain place we just use a placeholder element of the type "`figinc`"
 
-*Title* (`Paper.title`)
+**Title** (`Paper.title`)
 
 ```html
 The <em>TAHI</em> Article Format
@@ -32,7 +32,7 @@ The <em>TAHI</em> Article Format
 
 Allowed tags: `<em>`, `<strong>`
 
-*Abtract* (`Paper.abstract`)
+**Abtract** (`Paper.abstract`)
 
 ```html
 Article abstract that can be <strong>annotated</strong>
@@ -41,7 +41,7 @@ Article abstract that can be <strong>annotated</strong>
 Allowed tags: `<em>`, `<strong>`
 
 
-*Figure caption* (`Figure.caption`)
+**Figure caption** (`Figure.caption`)
 
 While most data fields (title, url, etc.) of a figure are stored as strings in the database, we use HTML for the figure caption.
 
@@ -71,7 +71,7 @@ Here's a possible representation in JSON, that could be used to transfer data to
       "type": "fig",
       "caption": "annotated <em>caption</em>"
     },
-    "bib1": {...}
+    "bib1": {}
   }
 }
 ```
@@ -110,7 +110,7 @@ An interesting way could also be providing the complete data as an HTML document
         ...
       </div>
     </header>
-    <!-- this lives in db paper.main -->
+    <!-- this lives in db paper.body -->
     <main>
       <h1 id="h1">A heading</h1>
       <p id="p1">
@@ -125,3 +125,21 @@ An interesting way could also be providing the complete data as an HTML document
 ```
 
 Exposing the Tahi Article as an HTML document would allow somebody to edit the whole document by hand in a text editor. However, we have to be aware that importing a modified Tahi-Source-HTML file is a destructive operation. If we want to allow it, the user must be warned that all contents in the database will be overwritten with the contents of the HTML file.
+
+# Use cases
+
+## Different update strategies
+
+We have to deal with two categories of document manipulations:
+
+- **Individual field writes** : For instance update document title or body: HTML fragment is sent to the server and paper.title or paper.body is set.
+
+- **Full document writes:** Complete Tahi Source HTML file is written: HTML is validated and verified. If successful individual fields are extracted from the file and stored in the corresponding db records. Old contents are removed (also figures and bibliographic entries) and replaced with the new contents. 
+
+iHat for instance would use the full document write API for the initial import of a Word document. Howeverm we have to be aware that there can only be one source of information. E.g. when after the import the author would make fixes in the Tahi Editor, he would loose all changes when he does another import of the Word document.
+
+## Maintaining a stand-alone version of the editor
+
+This is very important to make editor development efficient. A stand-alone version of the editor could be implemented against a simplified backend that just deals with reading and saving the Tahi-Source HTML, instead of decomposing the information into separate database tables. This allows editor development to be isolated from the Tahi platform, which has a very complex setup that is not suitable for editor development.
+
+There's also potential in offering the Tahi Editor as a stand-alone app, so people can use it outside of the Tahi platform.
