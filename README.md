@@ -136,7 +136,7 @@ We have to deal with two categories of document manipulations:
 
 - **Full document writes:** Complete Tahi Source HTML file is written: HTML is validated and verified. If successful individual fields are extracted from the file and stored in the corresponding db records. Old contents are removed (also figures and bibliographic entries) and replaced with the new contents. 
 
-iHat for instance would use the full document write API for the initial import of a Word document. Howeverm we have to be aware that there can only be one source of information. E.g. when after the import the author would make fixes in the Tahi Editor, he would loose all changes when he does another import of the Word document.
+iHat for instance would use the full document write API for the initial import of a Word document. However, we have to be aware that there can only be one source of information. E.g. when after the import the author would make fixes in the Tahi Editor, he would loose all changes when he does another import of the Word document.
 
 ## Maintaining a stand-alone version of the editor
 
