@@ -15,6 +15,12 @@ Tahi articles live in the database, and are fragmented to different tables and f
   <p id="p1">
     Some <em id="em13">annotated</em> content (see <cite id="bibref13" typeof="bibref" data-rid="bib13">Doe, 2010</cite> and <cite id="figref9" typeof="figref" data-rid="fig1">Figure 1</cite>).
   </p>
+  <p id="p2">
+    When <span typoef="math" id="m1">a \ne 0</span>, there are two solutions to <span typoef="math" id="m2">ax^2 + bx + c = 0</span> and they are
+  </p>
+  <div id="f1" typeof="formula">
+    x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
+  </div>
   <h1 id="h2">Top level</h1>
   <!-- include external resource (figure) -->
   <div typeof="figinc" data-rid="fig1"></div>
