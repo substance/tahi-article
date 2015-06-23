@@ -16,11 +16,51 @@ Tahi articles live in the database, and are fragmented to different tables and f
     Some <em id="em13">annotated</em> content (see <cite id="bibref13" typeof="bibref" data-rid="bib13">Doe, 2010</cite> and <cite id="figref9" typeof="figref" data-rid="fig1">Figure 1</cite>).
   </p>
   <p id="p2">
-    When <span typoef="math" id="m1">a \ne 0</span>, there are two solutions to <span typoef="math" id="m2">ax^2 + bx + c = 0</span> and they are
+    When
+    <math>
+      <mi>a</mi><mo>&#x2260;</mo><mn>0</mn>
+    </math>,
+    there are two solutions to
+    <math>
+      <mi>a</mi><msup><mi>x</mi><mn>2</mn></msup>
+      <mo>+</mo> <mi>b</mi><mi>x</mi>
+      <mo>+</mo> <mi>c</mi> <mo>=</mo> <mn>0</mn>
+    </math>
+    and they are
   </p>
-  <div id="f1" typeof="formula">
-    x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
-  </div>
+  <!-- Top level math elements are considered block formulas -->
+  <math id="f1" typeof="formula">
+    <mi>x</mi> <mo>=</mo>
+    <mrow>
+      <mfrac>
+        <mrow>
+          <mo>&#x2212;</mo>
+          <mi>b</mi>
+          <mo>&#x00B1;</mo>
+          <msqrt>
+            <msup><mi>b</mi><mn>2</mn></msup>
+            <mo>&#x2212;</mo>
+            <mn>4</mn><mi>a</mi><mi>c</mi>
+          </msqrt>
+        </mrow>
+        <mrow> <mn>2</mn><mi>a</mi> </mrow>
+      </mfrac>
+    </mrow>
+    <mtext>.</mtext>
+  </math>
+  <!-- Simple table -->
+  <table id="t1">
+    <thead id="t1_h">
+      <tr id="t1_1"><th id="t1_1_1">A</th><th id="t1_1_2">B</th><th id="t1_1_3">C</th><th id="t1_1_4">D</th><th id="t1_1_5">E</th><th id="t1_1_6">F</th></tr>
+    </thead>
+    <tbody id="t1_b">
+      <tr id="t1_2"><td id="t1_2_1">1</td><td id="t1_2_2">2</td><td id="t1_2_3">3</td><td id="t1_2_4">4</td><td id="t1_2_5">5</td><td id="t1_2_6">6</td></tr>
+      <tr id="t1_3"><td id="t1_3_1">7</td><td id="t1_3_2">8</td><td id="t1_3_3">9</td><td id="t1_3_4">10</td><td id="t1_3_5">11</td><td id="t1_3_6">2</td></tr>
+      <tr id="t1_4"><td id="t1_4_1">13</td><td id="t1_4_2">14</td><td id="t1_4_3">15</td><td id="t1_4_4">16</td><td id="t1_4_5">17</td><td id="t1_4_6">18</td></tr>
+      <tr id="t1_5"><td id="t1_5_1">19</td><td id="t1_5_2">20</td><td id="t1_5_3">21</td><td id="t1_5_4">22</td><td id="t1_5_5">23</td><td id="t1_5_6">24</td></tr>
+      <tr id="t1_6"><td id="t1_6_1">25</td><td id="t1_6_2">26</td><td id="t1_6_3">27</td><td id="t1_6_4">28</td><td id="t1_6_5">29</td><td id="t1_6_6">30</td></tr>
+    </tbody>
+  </table>
   <h1 id="h2">Top level</h1>
   <!-- include external resource (figure) -->
   <div typeof="figinc" data-rid="fig1"></div>
