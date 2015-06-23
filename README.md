@@ -146,14 +146,64 @@ An interesting way could also be providing the complete data as an HTML document
         ...
       </div>
       <div typeof="bib" id="bib1">
-        <div property="authors">
-          <div typeof="author">
-            <div property="surname">Doe</div>
-            <div property="given_names">John</div>
-          </div>
-        </div>
-        <div property="year">2010</div>
-        ...
+        <script type="application/json" data-format="citeproc">
+          {
+            "subtitle": [],
+            "issued": {
+              "year": 2013,
+              "month": 8
+            },
+            "score": 1,
+            "prefix": "http://id.crossref.org/prefix/10.1109",
+            "author": [
+              {
+                "family": "Lughofer",
+                "given": "Edwin"
+              },
+              {
+                "family": "Buchtala",
+                "given": "Oliver"
+              }
+            ],
+            "container-title": "IEEE Transactions on Fuzzy Systems",
+            "reference-count": 0,
+            "page": "625-641",
+            "deposited": {
+              "date-parts": [
+                [
+                  2013,
+                  8,
+                  14
+                ]
+              ],
+              "timestamp": 1376438400000
+            },
+            "issue": "4",
+            "title": "Reliable All-Pairs Evolving Fuzzy Classifiers",
+            "type": "journal-article",
+            "DOI": "10.1109/tfuzz.2012.2226892",
+            "ISSN": [
+              "1063-6706",
+              "1941-0034"
+            ],
+            "URL": "http://dx.doi.org/10.1109/tfuzz.2012.2226892",
+            "source": "CrossRef",
+            "publisher": "Institute of Electrical & Electronics Engineers (IEEE)",
+            "indexed": {
+              "date-parts": [
+                [
+                  2014,
+                  9,
+                  21
+                ]
+              ],
+              "timestamp": 1411301462763
+            },
+            "volume": "21",
+            "member": "http://id.crossref.org/member/263",
+            "page-first": "625"
+          }
+        </script>
       </div>
     </header>
     <!-- this lives in db paper.body -->
